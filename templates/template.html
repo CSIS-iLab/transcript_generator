@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transcript Maker</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',     filename='css/template.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <!--Navbar that appears at the top of each page-->
+      <nav>
+        <a class="nav-link" href="{{ home_link }}">Home</a>
+        <a href="https://www.csis.org/" class="logo" title="Go to CSIS.org"
+          ><img alt="csis logo" src="../static/download.svg"
+        /></a>
+      </nav>
+      {% block header %}{% endblock %}
+    </header>
+    <main>
+      <section class="template-section">
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+    <div class="footer">
+      <div class="left">
+        <a
+          href="https://www.csis.org/"
+          class="footer__logo"
+          title="Go to CSIS.org"
+          ><img alt="csis logo" src="../static/download.svg"
+        /></a>
+        <p class="footer__copyright">
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Center for Strategic and International Studies.<br />All rights
+          reserved.
+          <a href="https://www.csis.org/privacy-policy">Privacy Policy</a>
+        </p>
+      </div>
+      <div class="right">
+        <address class="footer__address">
+          1616 Rhode Island Ave NW<br />
+          Washington, DC 20036
+        </address>
+        <span class="footer__phone">(202) 887-0200</span>
+      </div>
+    </div>
+  </body>
+</html>

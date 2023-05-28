@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Transcript Maker</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image"
+    />
+  </head>
+  <body>
+    {% extends "template.html" %} {% block content %}
+    <div class="container">
+      <h2 class="page-header">Details</h2>
+      <p>
+        The prompt that was used to generate your single-paragraph summary is:
+      </p>
+      <p class="prompt">{{prompt}}:</p>
+      <br />
+      <h2>Summary Paragraph</h2>
+      <br />
+      <div>{{short_summary}}</div>
+      <br />
+      <h2>Try again?</h2>
+      <p>
+        <span class="underline">Option 1: Same Prompt.</span>
+        To try again
+        <span class="bold_underline">without</span>
+        using a new prompt, click "Try Again" and leave the area below blank.
+      </p>
+      <p>
+        <span class="underline">Option 2: New Prompt.</span> To try again and
+        use a <span class="bold_underline">new prompt</span>, enter your prompt
+        below and click "Try Again."
+      </p>
+      <p>
+        <span class="underline">Start over with a new audio file.</span>
+        To start over and use a
+        <span class="bold_underline">different audio file</span>, click the
+        "Home" button at the top of the page.
+      </p>
+      <form method="post">
+        <textarea
+          id="textarea"
+          name="text"
+          placeholder="My new prompt..."
+        ></textarea>
+        <input type="submit" value="Try Again" />
+      </form>
+      <hr />
+      <br />
+      <h2>Transcript</h2>
+      <div>
+        {% for dict_item in transcript %}
+        <p>
+          <span class="bold">Speaker {{ dict_item['speaker']}}: </span
+          >{{dict_item['text']}}
+        </p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

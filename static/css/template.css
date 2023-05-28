@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Source+Sans+Pro:wght@300;400;700&family=Source+Serif+Pro:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: boder-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+// in template, contains other content
+main {
+  padding-bottom: 100px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+a:hover {
+  color: #3dd5ff;
+  transition: 0.2s ease-in-out;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Navigation                                 */
+/* -------------------------------------------------------------------------- */
+.logo {
+  color: white;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  transition: filter 0.3s ease-in-out;
+}
+
+.nav-link {
+  color: white;
+  font-family: "Source Sans Pro";
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin-top: 18px;
+}
+
+/* Fix navigation to create a sticky nav bar */
+nav {
+  position: fixed;
+  width: 100%;
+  background-color: #0a2458;
+  padding: 32px 25px 32px 25px;
+  display: flex;
+}
+
+/* make the nav bar adapt to small screen sizes */
+@media (max-width: 500px) {
+  nav {
+    padding: 10px 0 0 0;
+  }
+}
+
+/* push text down on page so not hidden by nav */
+.page-header {
+  padding-top: 150px;
+  font-size: 2rem;
+}
+
+/* ------------------ container for everything else on page ----------------- */
+
+// in index, complete
+
+.template-section {
+  flex: 1 0 auto;
+}
+
+.container {
+  max-width: 80%;
+  margin-left: 25px;
+  padding-bottom: 250px;
+  font-family: "Source Serif Pro";
+}
+
+.container-link {
+  color: #0a2458;
+  font-family: "Source Serif Pro";
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.container p {
+  margin-top: 25px;
+}
+
+.container ul {
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+}
+
+.container li {
+  margin-top: 1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               form and inputs                              */
+/* -------------------------------------------------------------------------- */
+form {
+  padding: 20px 20px 20px 0px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 250px;
+}
+
+input {
+  border: none;
+  background-color: white;
+  width: 300px;
+}
+
+input::file-selector-button {
+  border: none;
+  background: #3dd5ff;
+  padding: 1.25rem 1.5rem;
+  color: #333;
+  font-family: "Source Sans Pro";
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover,
+input[type="submit"]:hover {
+  background: #0054a4;
+  color: #fcfcfc;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="submit"] {
+  background-color: #3dd5ff;
+  border: none;
+  color: #333;
+  grid-column: 1/-1;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Arial";
+}
+
+#textarea {
+  width: 500px;
+  height: 200px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Footer                                   */
+/* -------------------------------------------------------------------------- */
+
+.footer {
+  background-color: #0a2458;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  line-height: 1.4;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  width: 100%;
+}
+
+.left,
+.right {
+  width: 45%;
+  margin: 0 25px 0 25px;
+}
+
+.footer__copyright {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  text-align: left;
+  font-style: normal;
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.footer__copyright a {
+  font-size: 0.75rem;
+  text-decoration: underline;
+  color: #3dd5ff;
+}
+
+.footer__address,
+.footer__phone {
+  text-align: left;
+  font-style: normal;
+  font-family: "Source Sans Pro";
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Misc                                    */
+/* -------------------------------------------------------------------------- */
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bold_underline {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.prompt {
+  margin-left: 50px;
+}
+
+.notes {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-bottom: 250px;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    width: 100%;
+    margin: 0 25px 0 25px;
+    padding-bottom: 1rem;
+  }
+}
