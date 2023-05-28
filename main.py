@@ -27,12 +27,12 @@ if __name__ == '__main__':
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """Method for '/ route that handles both new
+    sessions and users navigating there from '/complete'"""
+
     # Check if upload_folder exists, and if not, create it
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
-
-    """Method for '/ route that handles both new
-    sessions and users navigating there from '/complete'"""
 
     # tell the navbar what "Home" goes to
     home_link = url_for('index')
