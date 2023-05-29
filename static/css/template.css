@@ -160,6 +160,25 @@ input[type="submit"] {
   font-family: "Arial";
 }
 
+.submitted-visible {
+  background: #0054a4;
+  color: #fcfcfc;
+  border: none;
+  grid-column: 1/-1;
+  padding: 1.25rem 0 1.25rem 0;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Arial";
+  width: 300px !important;
+}
+
+.submitted-hidden {
+  display: none;
+}
+
 #textarea {
   width: 500px;
   height: 200px;

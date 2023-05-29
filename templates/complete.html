@@ -47,7 +47,10 @@
           name="text"
           placeholder="My new prompt..."
         ></textarea>
-        <input type="submit" value="Try Again" />
+        <input id="upload_submit" type="submit" value="Try Again" />
+        <label id="submitted" class="submitted-hidden"
+          >Submitted! Please wait.</label
+        >
       </form>
       <hr />
       <br />
@@ -63,4 +66,5 @@
     </div>
     {% endblock %}
   </body>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </html>

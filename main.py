@@ -6,7 +6,7 @@ use environment variables. Import 'creator' module.
 import glob
 import os
 import uuid
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 from dotenv import load_dotenv
 import helpers
 
@@ -30,35 +30,40 @@ def index():
     """Method for '/ route that handles both new
     sessions and users navigating there from '/complete'"""
 
-    # Check if upload_folder exists, and if not, create it
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
-
     # tell the navbar what "Home" goes to
     home_link = url_for('index')
 
-    # ask what page the user got here from
-    from_page = request.args.get('from_page')
+    if request.method == 'GET':
 
-    # ---------------- if they're coming from '/complete' ---------------- #
-    if from_page == 'complete':
-        # get the ID from the URL params
-        session_id = request.args.get('id')
+        # Check if upload_folder exists, and if not, create it
+        if not os.path.exists(UPLOAD_FOLDER):
+            os.makedirs(UPLOAD_FOLDER)
 
-        # delete every summary and transcript with that id
-        summary_filelist = glob.glob(f'summary_{session_id}.json')
-        transcript_filelist = glob.glob(f'transcript_{session_id}.json')
-        helpers.delete_files(summary_filelist)
-        helpers.delete_files(transcript_filelist)
-
-        # delete the session ID
-        session.pop('id', None)
-
-    # ------ if they're hitting 'submit' and starting a new session ------ #
-    if request.method == 'POST':
+        # ask what page the user got here from
+        from_page = request.args.get('from_page')
         # create a session ID
         session_id = uuid.uuid4()
         session['id'] = session_id
+
+        if from_page == 'complete':
+            # get the ID from the URL params
+            session_id = request.args.get('id')
+
+            # delete every summary and transcript with that id
+            summary_filelist = glob.glob(f'summary_{session_id}.json')
+            transcript_filelist = glob.glob(f'transcript_{session_id}.json')
+            helpers.delete_files(summary_filelist)
+            helpers.delete_files(transcript_filelist)
+
+            # delete the session ID
+            session.pop(session_id, None)
+
+        return render_template('index.html', home_link=home_link)
+
+    # ------ if they're hitting 'submit' ------ #
+    if request.method == 'POST':
+        print("post")
+        session_id = session['id']
 
         # get the user's uploaded file
         uploaded_file = request.files['file']
@@ -74,8 +79,6 @@ def index():
 
         # send them to '/complete'
         return redirect(url_for('complete', home_link=home_link))
-
-    return render_template('index.html', home_link=home_link)
 
 
 @app.route('/complete', methods=['GET', 'POST'])
